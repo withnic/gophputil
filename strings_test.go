@@ -143,3 +143,9 @@ func ExampleImplode() {
 	// Output:
 	//hoge,fuga
 }
+
+func ExampleLevenshtein() {
+	fmt.Println(Levenshtein("Hello world.", "Good by world."))
+	// Output:
+	//7
+}
