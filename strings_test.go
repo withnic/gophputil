@@ -137,3 +137,9 @@ func ExampleHtmlEntities() {
 	// Output:
 	//&#34;Fran &amp; Freddie&#39;s Diner&#34; &lt;tasty@example.com&gt;
 }
+
+func ExampleImplode() {
+	fmt.Println(Implode(",", []string{"hoge", "fuga"}))
+	// Output:
+	//hoge,fuga
+}

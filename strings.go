@@ -246,6 +246,14 @@ func Htmlspecialchars(s string) string {
 	return html.EscapeString(s)
 }
 
+func Implode(d string, s []string) string {
+	return strings.Join(s, d)
+}
+
+func Join(d string, s []string) string {
+	return Implode(d, s)
+}
+
 func Rtrim(s ...string) string {
 	return rtrim(s)
 }
