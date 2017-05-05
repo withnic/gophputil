@@ -125,3 +125,15 @@ func ExampleHex2Bin() {
 	// Output:
 	//hello hex data
 }
+
+func ExampleHtmlEntityDecode() {
+	fmt.Println(HtmlEntityDecode(`&quot;Fran &amp; Freddie&#39;s Diner&quot; &lt;tasty@example.com&gt;`))
+	// Output:
+	// "Fran & Freddie's Diner" <tasty@example.com>
+}
+
+func ExampleHtmlEntities() {
+	fmt.Println(HtmlEntities(`"Fran & Freddie's Diner" <tasty@example.com>`))
+	// Output:
+	//&#34;Fran &amp; Freddie&#39;s Diner&#34; &lt;tasty@example.com&gt;
+}

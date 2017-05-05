@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"hash/crc32"
+	"html"
 	"io"
 	"os"
 	"strings"
@@ -225,6 +226,24 @@ func Hebrevc(s string, m int) string {
 func Hex2Bin(s string) string {
 	b, _ := hex.DecodeString(s)
 	return string(b)
+}
+
+func HtmlEntityDecode(s string) string {
+	return html.UnescapeString(s)
+}
+
+func HtmlEntities(s string) string {
+	return html.EscapeString(s)
+}
+
+// TODO Fix. It's not strict.
+func HtmlspecialcharsDecode(s string) string {
+	return html.UnescapeString(s)
+}
+
+// TODO Fix. It's not strict.
+func Htmlspecialchars(s string) string {
+	return html.EscapeString(s)
 }
 
 func Rtrim(s ...string) string {
