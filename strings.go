@@ -13,6 +13,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 
 	"golang.org/x/crypto/blowfish"
 )
@@ -403,6 +404,12 @@ func Quotemeta(s string) string {
 
 func Rtrim(s ...string) string {
 	return trim(s, 1)
+}
+
+// TODO: http://php.net/manual/ja/function.setlocale.php
+func SetLocate(i int, l string) {
+	loc := time.FixedZone(l, 9*60*60)
+	time.Local = loc
 }
 
 // TODO
