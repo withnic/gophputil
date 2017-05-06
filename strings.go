@@ -373,6 +373,10 @@ func Print(s string) int {
 	return 1
 }
 
+func Printf(f string, a ...interface{}) {
+	fmt.Printf(f, a...)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

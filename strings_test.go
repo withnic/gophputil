@@ -192,3 +192,9 @@ func ExamplePrint() {
 	// Output:
 	//Hello
 }
+
+func ExamplePrintf() {
+	Printf("%s : %d", "Hello", 10)
+	// Output:
+	//Hello : 10
+}
