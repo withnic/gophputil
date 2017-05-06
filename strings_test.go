@@ -175,3 +175,14 @@ func ExampleOrd() {
 	// Output:
 	//97
 }
+
+func ExampleParseStr() {
+	values := ParseStr("first=value&arr[]=foo+bar&arr[]=baz")
+	fmt.Println(values["first"][0])
+	fmt.Println(values["arr"][0])
+	fmt.Println(values["arr"][1])
+	// Output:
+	//value
+	//foo bar
+	//baz
+}

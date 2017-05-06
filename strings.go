@@ -347,6 +347,27 @@ func Ord(s string) int {
 	return int(s[0])
 }
 
+func ParseStr(s string) map[string][]string {
+	res := make(map[string][]string)
+	// key=v
+	queries := strings.Split(s, "&")
+	for _, v := range queries {
+		// 0:key , 1:v
+		query := strings.Split(v, "=")
+		if t := strings.Index(query[0], "[]"); t != -1 {
+			// ak = key
+			ak := query[0][:t]
+			vv := strings.Replace(query[1], "+", " ", -1)
+			res[ak] = append(res[ak], vv)
+		} else {
+			ak := query[0]
+			res[ak] = append(res[ak], query[1])
+		}
+	}
+
+	return res
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
