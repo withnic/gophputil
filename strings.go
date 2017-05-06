@@ -377,6 +377,33 @@ func Printf(f string, a ...interface{}) {
 	fmt.Printf(f, a...)
 }
 
+// TODO: http://php.net/manual/ja/function.quoted-printable-decode.php
+func QuotedPrintableDecode(s string) string {
+	return ""
+}
+
+// TODO: http://php.net/manual/ja/function.quoted-printable-encode.php
+func QuotedPrintableEncode(s string) string {
+	return ""
+}
+
+func Quotemeta(s string) string {
+	r := strings.NewReplacer(
+		`.`, `\.`,
+		`\`, `\\`,
+		`+`, `\+`,
+		`*`, `\*`,
+		`?`, `\?`,
+		`[`, `\[`,
+		`^`, `\^`,
+		`]`, `\]`,
+		`(`, `\(`,
+		`$`, `\$`,
+		`)`, `\)`,
+	)
+	return r.Replace(s)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

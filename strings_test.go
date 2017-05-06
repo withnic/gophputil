@@ -198,3 +198,9 @@ func ExamplePrintf() {
 	// Output:
 	//Hello : 10
 }
+
+func ExampleQuotemeta() {
+	fmt.Print(Quotemeta("Hello world. (can you hear me?)"))
+	// Output:
+	//Hello world\. \(can you hear me\?\)
+}
