@@ -186,3 +186,9 @@ func ExampleParseStr() {
 	//foo bar
 	//baz
 }
+
+func ExamplePrint() {
+	Print("Hello")
+	// Output:
+	//Hello
+}

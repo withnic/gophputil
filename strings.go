@@ -368,6 +368,11 @@ func ParseStr(s string) map[string][]string {
 	return res
 }
 
+func Print(s string) int {
+	fmt.Print(s)
+	return 1
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
