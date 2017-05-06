@@ -312,6 +312,32 @@ func Md5File(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+func Md5(s string) string {
+	h := md5.New()
+	io.WriteString(h, s)
+	return hex.EncodeToString(h.Sum(nil))
+}
+
+// TODO: http://php.net/manual/ja/function.metaphone.php
+func Metaphone(s string) string {
+	return ""
+}
+
+// TODO: http://php.net/manual/ja/function.money-format.php
+func MoneyFormat(f string, m int) string {
+	return ""
+}
+
+// TODO: http://php.net/manual/ja/function.nl-langinfo.php
+func NlLanginfo() string {
+	return ""
+}
+
+func Nl2br(s string) string {
+	r := strings.NewReplacer("\n\r", "\n", "\r\n", "\n", "\r", "\n", "\n", "<br>\n")
+	return r.Replace(s)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
@@ -397,9 +423,4 @@ func Ucwords(p ...string) string {
 	}
 
 	return res
-}
-
-func Nl2br(s string) string {
-	r := strings.NewReplacer("\n\r", "\n", "\r\n", "\n", "\r", "\n", "\n", "<br>\n")
-	return r.Replace(s)
 }

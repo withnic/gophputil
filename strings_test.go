@@ -163,3 +163,9 @@ func ExampleMd5File() {
 	// Output:
 	//8654b55cf206f99f629ff6457da3484c
 }
+
+func ExampleMd5() {
+	fmt.Println(Md5("test"))
+	// Output:
+	//098f6bcd4621d373cade4e832627b4f6
+}
