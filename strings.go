@@ -433,6 +433,11 @@ func Sha1(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+// TODO http://php.net/manual/ja/function.similar-text.php
+func SimilarText(f string, s string) int {
+	return 0
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
