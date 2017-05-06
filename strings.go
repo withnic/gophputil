@@ -255,10 +255,6 @@ func Join(d string, s []string) string {
 	return Implode(d, s)
 }
 
-func Rtrim(s ...string) string {
-	return trim(s, 1)
-}
-
 func Levenshtein(s string, t string) int {
 	d := make([][]int, len(s)+1)
 	for i := range d {
@@ -402,6 +398,10 @@ func Quotemeta(s string) string {
 		`)`, `\)`,
 	)
 	return r.Replace(s)
+}
+
+func Rtrim(s ...string) string {
+	return trim(s, 1)
 }
 
 func trimfunc(i int) func(s string, d string) string {
