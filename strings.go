@@ -438,6 +438,11 @@ func SimilarText(f string, s string) int {
 	return 0
 }
 
+// TODO http://php.net/manual/ja/function.soundex.php
+func Soundex(s string) string {
+	return ""
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
