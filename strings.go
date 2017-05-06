@@ -42,7 +42,7 @@ func Bin2Hex(s string) string {
 }
 
 func Chop(s ...string) string {
-	return rtrim(s)
+	return trim(s, 1)
 }
 
 func Chr(i int) string {
@@ -255,7 +255,7 @@ func Join(d string, s []string) string {
 }
 
 func Rtrim(s ...string) string {
-	return rtrim(s)
+	return trim(s, 1)
 }
 
 func Levenshtein(s string, t string) int {
@@ -288,7 +288,34 @@ func Levenshtein(s string, t string) int {
 	return d[len(s)][len(t)]
 }
 
-func rtrim(s []string) string {
+// TODO
+func Localeconv() {
+
+}
+
+func Ltrim(s ...string) string {
+	return trim(s, 2)
+}
+
+func trimfunc(i int) func(s string, d string) string {
+	if i == 1 {
+		return func(s string, d string) string {
+			return strings.TrimSuffix(s, d)
+		}
+	} else if i == 2 {
+		return func(s string, d string) string {
+			return strings.TrimPrefix(s, d)
+		}
+	} else {
+		// TODO
+		return func(s string, d string) string {
+			return strings.TrimPrefix(s, d)
+		}
+	}
+}
+
+func trim(s []string, i int) string {
+	trims := trimfunc(i)
 	if len(s) == 2 {
 		r := strings.Split(s[1], "..")
 		if len(r) == 2 {
@@ -298,7 +325,7 @@ func rtrim(s []string) string {
 			t := len(str)
 			for {
 				for i := min[0]; i <= max[0]; i++ {
-					str = strings.TrimSuffix(str, string(i))
+					str = trims(str, string(i))
 				}
 				if t == len(str) {
 					break
@@ -307,7 +334,7 @@ func rtrim(s []string) string {
 			}
 			return str
 		}
-		return strings.TrimSuffix(s[0], s[1])
+		return trims(s[0], s[1])
 	}
 
 	r := s[0]
@@ -316,7 +343,7 @@ func rtrim(s []string) string {
 
 	for {
 		for _, v := range suffix {
-			r = strings.TrimSuffix(r, v)
+			r = trims(r, v)
 		}
 		if t == len(r) {
 			break

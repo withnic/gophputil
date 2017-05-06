@@ -149,3 +149,11 @@ func ExampleLevenshtein() {
 	// Output:
 	//7
 }
+
+func ExampleLtrim() {
+	fmt.Println(Ltrim("  \t     Example string"))
+	fmt.Println(Ltrim("example string", "a..z"))
+	// Output:
+	//Example string
+	//  string
+}
