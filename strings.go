@@ -2,6 +2,7 @@ package phputil
 
 import (
 	"crypto/md5"
+	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
@@ -402,6 +403,27 @@ func Quotemeta(s string) string {
 
 func Rtrim(s ...string) string {
 	return trim(s, 1)
+}
+
+// TODO
+func Sha1File(s string) string {
+	f, err := os.Open(s)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	h := sha1.New()
+	if _, err := io.Copy(h, f); err != nil {
+		log.Fatal(err)
+	}
+	return hex.EncodeToString(h.Sum(nil))
+}
+
+func Sha1(s string) string {
+	h := sha1.New()
+	h.Write([]byte(s))
+	return hex.EncodeToString(h.Sum(nil))
 }
 
 func trimfunc(i int) func(s string, d string) string {

@@ -204,3 +204,15 @@ func ExampleQuotemeta() {
 	// Output:
 	//Hello world\. \(can you hear me\?\)
 }
+
+func ExampleSha1() {
+	fmt.Print(Sha1("test"))
+	// Output:
+	//a94a8fe5ccb19ba61c4c0873d391e987982fbbd3
+}
+
+func ExampleSha1File() {
+	fmt.Print(Sha1File("./README.md"))
+	// Output:
+	//857c196985b516a92ae383cf2eb7c05e0ac8a835
+}
