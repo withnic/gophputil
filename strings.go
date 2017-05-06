@@ -9,6 +9,7 @@ import (
 	"hash/crc32"
 	"html"
 	"io"
+	"log"
 	"os"
 	"strings"
 
@@ -295,6 +296,20 @@ func Localeconv() {
 
 func Ltrim(s ...string) string {
 	return trim(s, 2)
+}
+
+func Md5File(s string) string {
+	f, err := os.Open(s)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+	h := md5.New()
+	if _, err := io.Copy(h, f); err != nil {
+		log.Fatal(err)
+	}
+
+	return hex.EncodeToString(h.Sum(nil))
 }
 
 func trimfunc(i int) func(s string, d string) string {

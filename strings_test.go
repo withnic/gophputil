@@ -157,3 +157,9 @@ func ExampleLtrim() {
 	//Example string
 	//  string
 }
+
+func ExampleMd5File() {
+	fmt.Println(Md5File("./README.md"))
+	// Output:
+	//8654b55cf206f99f629ff6457da3484c
+}
