@@ -447,6 +447,11 @@ func Sprintf(f string, a ...interface{}) string {
 	return fmt.Sprintf(f, a...)
 }
 
+func Sscanf(s string, f string, a ...interface{}) int {
+	n, _ := fmt.Sscanf(s, f, a...)
+	return n
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

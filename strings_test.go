@@ -222,3 +222,17 @@ func ExampleSprintf() {
 	// Output:
 	//Hello:10
 }
+
+func ExampleSscanf() {
+	var m string
+	var d int
+	var y int
+	Sscanf("January 01 2000", "%s %d %d", &m, &d, &y)
+	fmt.Println(m)
+	fmt.Println(d)
+	fmt.Println(y)
+	// Output:
+	// January
+	// 1
+	// 2000
+}
