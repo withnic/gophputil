@@ -216,3 +216,9 @@ func ExampleSha1File() {
 	// Output:
 	//857c196985b516a92ae383cf2eb7c05e0ac8a835
 }
+
+func ExampleSprintf() {
+	fmt.Print(Sprintf("%s:%d", "Hello", 10))
+	// Output:
+	//Hello:10
+}

@@ -443,6 +443,10 @@ func Soundex(s string) string {
 	return ""
 }
 
+func Sprintf(f string, a ...interface{}) string {
+	return fmt.Sprintf(f, a...)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
