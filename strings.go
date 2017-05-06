@@ -338,6 +338,15 @@ func Nl2br(s string) string {
 	return r.Replace(s)
 }
 
+// TODO:
+func NumberFormat(s string) string {
+	return ""
+}
+
+func Ord(s string) int {
+	return int(s[0])
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
