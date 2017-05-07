@@ -480,6 +480,10 @@ func StrPad(s string, l int, p string, i int) string {
 	return s[:l]
 }
 
+func StrRepeat(s string, i int) string {
+	return strings.Repeat(s, i)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

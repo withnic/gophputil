@@ -259,3 +259,9 @@ func ExampleStrPad() {
 	// Output:
 	//hogehoge-+-
 }
+
+func ExampleStrRepeat() {
+	fmt.Println(StrRepeat("Test", 5))
+	// Output:
+	//TestTestTestTestTest
+}
