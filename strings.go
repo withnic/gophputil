@@ -11,6 +11,7 @@ import (
 	"html"
 	"io"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"time"
@@ -509,6 +510,16 @@ func StrRot13(s string) string {
 	}
 
 	return string(res)
+}
+
+func StrShuffle(s string) string {
+	rand.Seed(time.Now().UnixNano())
+	dest := make([]byte, len(s))
+	perm := rand.Perm(len(s))
+	for i, v := range perm {
+		dest[v] = s[i]
+	}
+	return string(dest)
 }
 
 func trimfunc(i int) func(s string, d string) string {

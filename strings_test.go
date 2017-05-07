@@ -75,7 +75,7 @@ func ExampleCount_chars() {
 	for k, v := range v {
 		fmt.Printf("%d:%d\n", k, v)
 	}
-	// Unorderd output:
+	// Unordered output:
 	//32:4
 	//70:1
 	//115:1
@@ -276,4 +276,20 @@ func ExampleStrRot13() {
 	fmt.Println(StrRot13("Go 1.8"))
 	// Output:
 	//Tb 1.8
+}
+
+func ExampleStrShuffle() {
+	s := StrShuffle("shuffle")
+	for _, v := range s {
+		fmt.Println(string(v))
+	}
+	//Unordered output:
+	//s
+	//h
+	//u
+	//f
+	//f
+	//l
+	//e
+
 }
