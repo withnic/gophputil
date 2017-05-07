@@ -317,3 +317,15 @@ func ExampleStrcasecmp() {
 	//-1
 	//1
 }
+
+func ExampleStrchr() {
+	fmt.Println(Strchr("name@example.com", "@"))
+	// Output:
+	//@example.com
+}
+
+func ExampleStrStr() {
+	fmt.Println(StrStr("name@example.com", "@"))
+	// Output:
+	//@example.com
+}

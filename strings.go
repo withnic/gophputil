@@ -552,6 +552,18 @@ func Strcasecmp(f string, s string) int {
 	return strings.Compare(ff, ss)
 }
 
+func Strchr(h string, s string) string {
+	return StrStr(h, s)
+}
+
+func StrStr(h string, s string) string {
+	i := strings.Index(h, s)
+	if i >= 0 {
+		return string(h[i:])
+	}
+	return string("-1")
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
