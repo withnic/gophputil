@@ -305,3 +305,15 @@ func ExampleStrSplit() {
 	//wor
 	//ld.
 }
+
+func ExampleStrcasecmp() {
+	fmt.Println(Strcasecmp("hogehoge", "hogehoge"))
+	fmt.Println(Strcasecmp("hogehoge", "hogeHOGE"))
+	fmt.Println(Strcasecmp("aoge", "hoge"))
+	fmt.Println(Strcasecmp("ioge", "hoge"))
+	// Output:
+	//0
+	//0
+	//-1
+	//1
+}

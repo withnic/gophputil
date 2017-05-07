@@ -542,6 +542,17 @@ func StrSplit(s string, i int) []string {
 	return res
 }
 
+// TODO: http://php.net/manual/ja/function.str-word-count.php
+func StrWordCount(s string, f string) {
+
+}
+
+func Strcasecmp(f string, s string) int {
+	ff := strings.ToLower(f)
+	ss := strings.ToLower(s)
+	return strings.Compare(ff, ss)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
