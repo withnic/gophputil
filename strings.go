@@ -552,6 +552,36 @@ func Strcasecmp(f string, s string) int {
 	return strings.Compare(ff, ss)
 }
 
+func Ucfirst(s string) string {
+	first := strings.ToUpper(string(s[0]))
+	return first + s[1:]
+}
+
+func Lcfirst(s string) string {
+	first := strings.ToLower(string(s[0]))
+	return first + s[1:]
+}
+
+func Ucwords(p ...string) string {
+	d := " "
+	if len(p) > 1 {
+		d = p[1]
+	}
+	words := strings.Split(p[0], d)
+	var res string
+
+	if len(words) > 1 {
+		for i := 0; i < len(words); i++ {
+			res += Ucfirst(words[i]) + d
+		}
+		res = strings.TrimSuffix(res, d)
+	} else {
+		res = p[0]
+	}
+
+	return res
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
@@ -607,34 +637,4 @@ func trim(s []string, i int) string {
 	}
 
 	return r
-}
-
-func Ucfirst(s string) string {
-	first := strings.ToUpper(string(s[0]))
-	return first + s[1:]
-}
-
-func Lcfirst(s string) string {
-	first := strings.ToLower(string(s[0]))
-	return first + s[1:]
-}
-
-func Ucwords(p ...string) string {
-	d := " "
-	if len(p) > 1 {
-		d = p[1]
-	}
-	words := strings.Split(p[0], d)
-	var res string
-
-	if len(words) > 1 {
-		for i := 0; i < len(words); i++ {
-			res += Ucfirst(words[i]) + d
-		}
-		res = strings.TrimSuffix(res, d)
-	} else {
-		res = p[0]
-	}
-
-	return res
 }
