@@ -236,3 +236,20 @@ func ExampleSscanf() {
 	// 1
 	// 2000
 }
+
+/**
+func ExampleStrGetcsv() {
+	v := StrGetcsv(`first_name,last_name,username
+"Rob","Pike",rob
+Ken,Thompson,ken
+"Robert","Griesemer","gri"`)
+	// Output:
+	//[[first_name last_name username] [Rob Pike rob] [Ken Thompson ken] [Robert Griesemer gri]]
+}
+**/
+
+func ExampleStrIreplace() {
+	fmt.Println(StrIreplace("hoge", "Test", "hogefugaHogehoge"))
+	// Output:
+	//TestfugaTestTest
+}

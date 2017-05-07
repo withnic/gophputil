@@ -452,6 +452,21 @@ func Sscanf(s string, f string, a ...interface{}) int {
 	return n
 }
 
+// TODO http://php.net/manual/ja/function.str-getcsv.php
+/**
+func StrGetcsv(s string) [][]string {
+	r := csv.NewReader(strings.NewReader(s))
+	records, _ := r.ReadAll()
+	return records
+}
+**/
+
+func StrIreplace(n string, r string, s string) string {
+	res := strings.Replace(strings.ToLower(s), n, r, -1)
+	res = strings.Replace(strings.ToLower(s), n, r, -1)
+	return res
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
