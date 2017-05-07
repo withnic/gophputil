@@ -522,6 +522,26 @@ func StrShuffle(s string) string {
 	return string(dest)
 }
 
+func StrSplit(s string, i int) []string {
+	var res []string
+
+	if i < 1 {
+		log.Fatal("please input over 1")
+		//return false
+	}
+
+	if len(s) < i {
+		return []string{s}
+	}
+
+	for len(s) > 0 {
+		res = append(res, s[:i])
+		s = s[i:]
+	}
+
+	return res
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

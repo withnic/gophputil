@@ -293,3 +293,15 @@ func ExampleStrShuffle() {
 	//e
 
 }
+
+func ExampleStrSplit() {
+	values := StrSplit("hello,world.", 3)
+	for _, v := range values {
+		fmt.Println(v)
+	}
+	// Output:
+	//hel
+	//lo,
+	//wor
+	//ld.
+}
