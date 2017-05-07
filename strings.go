@@ -488,6 +488,29 @@ func StrRepeat(s string, i int) string {
 	return strings.Repeat(s, i)
 }
 
+func StrRot13(s string) string {
+	var res []rune
+	var t rune
+	for _, v := range s {
+		t = v
+		if 'a' < v && v < 'z' {
+			t = v + 13
+			if t > 'z' {
+				t -= 26
+			}
+		}
+		if 'A' < v && v < 'Z' {
+			t = v + 13
+			if t > 'Z' {
+				t -= 26
+			}
+		}
+		res = append(res, t)
+	}
+
+	return string(res)
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

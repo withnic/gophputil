@@ -271,3 +271,9 @@ func ExampleStrReplace() {
 	// Output:
 	//TestfugaTest
 }
+
+func ExampleStrRot13() {
+	fmt.Println(StrRot13("Go 1.8"))
+	// Output:
+	//Tb 1.8
+}
