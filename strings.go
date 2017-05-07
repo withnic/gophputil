@@ -547,13 +547,15 @@ func StrWordCount(s string, f string) {
 }
 
 func Strcasecmp(f string, s string) int {
-	ff := strings.ToLower(f)
-	ss := strings.ToLower(s)
-	return strings.Compare(ff, ss)
+	return Strcmp(strings.ToLower(f), strings.ToLower(s))
 }
 
 func Strchr(h string, s string) string {
 	return StrStr(h, s)
+}
+
+func Strcmp(f string, s string) int {
+	return strings.Compare(f, s)
 }
 
 func StrStr(h string, s string) string {

@@ -329,3 +329,9 @@ func ExampleStrStr() {
 	// Output:
 	//@example.com
 }
+
+func ExampleStrcmp() {
+	fmt.Println(Strcmp("hello", "hello"))
+	// Output:
+	//0
+}
