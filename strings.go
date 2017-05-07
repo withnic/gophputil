@@ -467,6 +467,19 @@ func StrIreplace(n string, r string, s string) string {
 	return res
 }
 
+//TODO:  i 0:STR_PAD_RIGHT 1:STR_PAD_LEFT 2:STR_PAD_BOTH only STR_PAD_RIGHT support
+func StrPad(s string, l int, p string, i int) string {
+	if len(s) > l {
+		return s
+	}
+
+	for len(s) < l {
+		s += p
+	}
+
+	return s[:l]
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {

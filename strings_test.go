@@ -253,3 +253,9 @@ func ExampleStrIreplace() {
 	// Output:
 	//TestfugaTestTest
 }
+
+func ExampleStrPad() {
+	fmt.Println(StrPad("hogehoge", 11, "-+", 0))
+	// Output:
+	//hogehoge-+-
+}
