@@ -413,7 +413,6 @@ func SetLocate(i int, l string) {
 	time.Local = loc
 }
 
-// TODO
 func Sha1File(s string) string {
 	f, err := os.Open(s)
 	if err != nil {
