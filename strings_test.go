@@ -265,3 +265,9 @@ func ExampleStrRepeat() {
 	// Output:
 	//TestTestTestTestTest
 }
+
+func ExampleStrReplace() {
+	fmt.Println(StrReplace("hoge", "Test", "hogefugahoge"))
+	// Output:
+	//TestfugaTest
+}

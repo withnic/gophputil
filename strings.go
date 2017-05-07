@@ -480,6 +480,10 @@ func StrPad(s string, l int, p string, i int) string {
 	return s[:l]
 }
 
+func StrReplace(n string, r string, s string) string {
+	return strings.Replace(s, n, r, -1)
+}
+
 func StrRepeat(s string, i int) string {
 	return strings.Repeat(s, i)
 }
