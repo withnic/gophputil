@@ -558,6 +558,30 @@ func Strcmp(f string, s string) int {
 	return strings.Compare(f, s)
 }
 
+// TODO: http://php.net/manual/ja/function.strcoll.php
+func Strcoll() int {
+	return 0
+}
+
+// TODO: http://php.net/manual/ja/function.strcspn.php
+func Strcspn(s string, m string) int {
+	return 0
+}
+
+// TODO: http://php.net/manual/ja/function.strip-tags.php
+func StripTags(s string, allow string) string {
+	return ""
+}
+
+// TODO:
+func Stripcslashes(s string) string {
+	return ""
+}
+
+func Stripos(s string, n string) int {
+	return strings.Index(strings.ToLower(s), strings.ToLower(n))
+}
+
 func StrStr(h string, s string) string {
 	i := strings.Index(h, s)
 	if i >= 0 {

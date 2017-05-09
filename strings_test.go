@@ -335,3 +335,9 @@ func ExampleStrcmp() {
 	// Output:
 	//0
 }
+
+func ExampleStripos() {
+	fmt.Println(Stripos("hello, world", "lo"))
+	// Output:
+	// 3
+}
