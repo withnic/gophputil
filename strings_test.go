@@ -349,3 +349,9 @@ func ExampleStripslashes() {
 	//hello', new hoge 'world
 	//hello\', new hoge \'world
 }
+
+func ExampleStriStr() {
+	fmt.Println(StriStr("name@example.com", "Xam"))
+	// Output:
+	//xample.com
+}

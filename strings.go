@@ -588,6 +588,14 @@ func Stripslashes(s string) string {
 	return re.ReplaceAllString(s, `$1`)
 }
 
+func StriStr(h string, s string) string {
+	i := Stripos(h, s)
+	if i >= 0 {
+		return h[i:]
+	}
+	return string("-1")
+}
+
 func StrStr(h string, s string) string {
 	i := strings.Index(h, s)
 	if i >= 0 {
