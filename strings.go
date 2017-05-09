@@ -631,6 +631,18 @@ func Strncasecmp(f string, s string, l int) int {
 	return Strcasecmp(ff, ss)
 }
 
+func Strncmp(f string, s string, l int) int {
+	t := l
+	if len(f) < t {
+		t = len(f)
+	}
+	if len(s) < t {
+		t = len(s)
+	}
+	ff := f[:t]
+	ss := s[:t]
+	return Strcmp(ff, ss)
+}
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

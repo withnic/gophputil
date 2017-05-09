@@ -371,3 +371,12 @@ func ExampleStrncasecmp() {
 	//1
 	//-1
 }
+func ExampleStrncmp() {
+	fmt.Println(Strncmp("name@example.com", "Namae", 3))
+	fmt.Println(Strncmp("naMa@example.com", "naMae", 4))
+	fmt.Println(Strncmp("Namaa@example.com", "namAe", 5))
+	// Output:
+	//1
+	//0
+	//-1
+}
