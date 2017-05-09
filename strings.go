@@ -652,8 +652,17 @@ func Strpbrk(h string, c string) string {
 	return string(-1)
 }
 
-func Strpos(s string, h string) int {
-	return strings.Index(s, h)
+func Strpos(h string, n string) int {
+	return strings.Index(h, n)
+}
+
+func Strrchr(h string, n string) string {
+	i := strings.LastIndex(h, n)
+	if i >= 0 {
+		return h[i:]
+	}
+
+	return string(-1)
 }
 
 func Ucfirst(s string) string {

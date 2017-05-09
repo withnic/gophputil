@@ -392,3 +392,9 @@ func ExampleStrpos() {
 	// Output:
 	//4
 }
+
+func ExampleStrrchr() {
+	fmt.Println(Strrchr("hogefugatestfuga.", "fuga"))
+	// Output:
+	//fuga.
+}
