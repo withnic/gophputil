@@ -13,6 +13,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
@@ -580,6 +581,11 @@ func Stripcslashes(s string) string {
 
 func Stripos(s string, n string) int {
 	return strings.Index(strings.ToLower(s), strings.ToLower(n))
+}
+
+func Stripslashes(s string) string {
+	re := regexp.MustCompile(`\\([^\\])`)
+	return re.ReplaceAllString(s, `$1`)
 }
 
 func StrStr(h string, s string) string {

@@ -341,3 +341,11 @@ func ExampleStripos() {
 	// Output:
 	// 3
 }
+
+func ExampleStripslashes() {
+	fmt.Println(Stripslashes(`hello\', new hoge \'world`))
+	fmt.Println(Stripslashes(`hello\\', new hoge \\'world`))
+	// Output:
+	//hello', new hoge 'world
+	//hello\', new hoge \'world
+}
