@@ -380,3 +380,9 @@ func ExampleStrncmp() {
 	//0
 	//-1
 }
+
+func ExampleStrpbrk() {
+	fmt.Println(Strpbrk("Namaa@nameple.com", "name"))
+	// Output:
+	//nameple.com
+}

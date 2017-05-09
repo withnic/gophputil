@@ -643,6 +643,15 @@ func Strncmp(f string, s string, l int) int {
 	ss := s[:t]
 	return Strcmp(ff, ss)
 }
+
+func Strpbrk(h string, c string) string {
+	i := strings.Index(h, c)
+	if i >= 0 {
+		return h[i:]
+	}
+	return string(-1)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
