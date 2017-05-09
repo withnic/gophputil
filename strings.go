@@ -665,6 +665,15 @@ func Strrchr(h string, n string) string {
 	return string(-1)
 }
 
+func Strrev(s string) string {
+	i := len(s) - 1
+	var res string
+	for ; i >= 0; i-- {
+		res += string(s[i])
+	}
+	return res
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

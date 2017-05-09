@@ -398,3 +398,9 @@ func ExampleStrrchr() {
 	// Output:
 	//fuga.
 }
+
+func ExampleStrrev() {
+	fmt.Println(Strrev("hogefugatestfuga."))
+	// Output:
+	//.aguftsetagufegoh
+}
