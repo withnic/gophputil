@@ -607,6 +607,30 @@ func StrStr(h string, s string) string {
 func Strlen(s string) int {
 	return len(s)
 }
+
+// TODO: http://php.net/manual/ja/function.strnatcasecmp.php
+func Strnatcasecmp(f string, s string) int {
+	return 0
+}
+
+// TODO: http://php.net/manual/ja/function.strnatcmp.php
+func Strnatcmp(f string, s string) int {
+	return 0
+}
+
+func Strncasecmp(f string, s string, l int) int {
+	t := l
+	if len(f) < t {
+		t = len(f)
+	}
+	if len(s) < t {
+		t = len(s)
+	}
+	ff := f[:t]
+	ss := s[:t]
+	return Strcasecmp(ff, ss)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

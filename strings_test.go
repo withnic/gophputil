@@ -361,3 +361,13 @@ func ExampleStrlen() {
 	// Output:
 	//13
 }
+
+func ExampleStrncasecmp() {
+	fmt.Println(Strncasecmp("name@example.com", "namae", 3))
+	fmt.Println(Strncasecmp("name@example.com", "namae", 4))
+	fmt.Println(Strncasecmp("namaa@example.com", "namae", 5))
+	// Output:
+	//0
+	//1
+	//-1
+}
