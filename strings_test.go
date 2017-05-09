@@ -355,3 +355,9 @@ func ExampleStriStr() {
 	// Output:
 	//xample.com
 }
+
+func ExampleStrlen() {
+	fmt.Println(Strlen("hello, world."))
+	// Output:
+	//13
+}

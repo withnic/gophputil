@@ -604,6 +604,9 @@ func StrStr(h string, s string) string {
 	return string("-1")
 }
 
+func Strlen(s string) int {
+	return len(s)
+}
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
