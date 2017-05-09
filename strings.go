@@ -652,6 +652,10 @@ func Strpbrk(h string, c string) string {
 	return string(-1)
 }
 
+func Strpos(s string, h string) int {
+	return strings.Index(s, h)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

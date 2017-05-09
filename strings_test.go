@@ -386,3 +386,9 @@ func ExampleStrpbrk() {
 	// Output:
 	//nameple.com
 }
+
+func ExampleStrpos() {
+	fmt.Println(Strpos("hogefugatestfuga.", "fuga"))
+	// Output:
+	//4
+}
