@@ -771,6 +771,11 @@ func Substr(str string, start int) string {
 	return str[start:]
 }
 
+//TODO: manymask http://php.net/manual/ja/function.trim.php
+func Trim(str ...string) string {
+	return trim(str, 0)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
@@ -811,9 +816,8 @@ func trimfunc(i int) func(s string, d string) string {
 			return strings.TrimPrefix(s, d)
 		}
 	} else {
-		// TODO
 		return func(s string, d string) string {
-			return strings.TrimPrefix(s, d)
+			return strings.Trim(s, d)
 		}
 	}
 }

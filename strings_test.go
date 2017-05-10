@@ -471,3 +471,9 @@ func ExampleSubstr() {
 	// Output:
 	//oge
 }
+
+func ExampleTrim() {
+	fmt.Println(Trim("     hogehoge    "))
+	// Output:
+	//hogehoge
+}
