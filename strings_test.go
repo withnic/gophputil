@@ -407,8 +407,17 @@ func ExampleStrrev() {
 
 func ExampleStrripos() {
 	fmt.Println(Strripos("hogefugatestfuga.", "fuga", 0))
-	fmt.Println(Strripos("hogefugatestfuga.", "fuga", 8))
+	fmt.Println(Strripos("hogefugatestFuga.", "fuga", 8))
 	// Output:
 	//12
+	//12
+}
+func ExampleStrrpos() {
+	fmt.Println(Strrpos("hogefugatestfuga.", "fuga", 0))
+	fmt.Println(Strrpos("hogefugatestFuga.", "fuga", 8))
+	fmt.Println(Strrpos("hogefugatestfuga.", "fuga", 8))
+	// Output:
+	//12
+	//-1
 	//12
 }

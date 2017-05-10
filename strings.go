@@ -690,6 +690,22 @@ func Strripos(haystack string, needle string, offset int) int {
 	return i
 }
 
+// http://php.net/manual/ja/function.strripos.php
+func Strrpos(haystack string, needle string, offset int) int {
+	s := haystack
+	if offset >= 0 {
+		s = s[offset:]
+	} else {
+		s = s[len(s)-offset:]
+	}
+	i := strings.LastIndex(s, needle)
+
+	if i >= 0 {
+		return i + offset
+	}
+	return i
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
