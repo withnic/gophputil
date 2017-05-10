@@ -439,3 +439,13 @@ func ExampleStrtr() {
 	// Output:
 	//hvgwfxgz
 }
+
+func ExampleSubstrCompare() {
+	fmt.Println(SubstrCompare("hoaiueo", "aiueo", 0))
+	fmt.Println(SubstrCompare("hAaiueo", "aiueo", 1))
+	fmt.Println(SubstrCompare("hoaiueo", "aiueo", 2))
+	// Output:
+	//1
+	//-1
+	//0
+}

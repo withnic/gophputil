@@ -739,6 +739,15 @@ func Strtr(str string, from string, to string) string {
 	return r.Replace(str)
 }
 
+//http://php.net/manual/ja/function.substr-compare.php
+func SubstrCompare(main string, str string, offset int) int {
+	l := len(main) - offset
+	if len(str) > l {
+		l = len(str)
+	}
+	e := offset + l
+	return strings.Compare(main[offset:e], str)
+}
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
