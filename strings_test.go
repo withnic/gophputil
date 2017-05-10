@@ -421,3 +421,13 @@ func ExampleStrrpos() {
 	//-1
 	//12
 }
+
+func ExampleStrtolower() {
+	fmt.Println(Strtolower("hogefugatestfuga."))
+	// Output:
+}
+
+func ExampleStrtoupper() {
+	fmt.Println(Strtoupper("hogefugatestfuga."))
+	// Output:
+}

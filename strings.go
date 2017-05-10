@@ -706,6 +706,26 @@ func Strrpos(haystack string, needle string, offset int) int {
 	return i
 }
 
+// TODO: http://php.net/manual/ja/function.strspn.php
+func Strspn(subject string, mask string) int {
+	return 0
+}
+
+// http://php.net/manual/ja/function.strtok.php
+func Strtok(str string, token string) string {
+	return ""
+}
+
+// http://php.net/manual/ja/function.strtolower.php
+func Strtolower(s string) string {
+	return strings.ToLower(s)
+}
+
+//http://php.net/manual/ja/function.strtoupper.php
+func Strtoupper(s string) string {
+	return strings.ToUpper(s)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
