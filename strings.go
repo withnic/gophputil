@@ -749,9 +749,21 @@ func SubstrCompare(main string, str string, offset int) int {
 	return strings.Compare(main[offset:e], str)
 }
 
+// http://php.net/manual/ja/function.substr-count.php
 func SubstrCount(haystack string, needle string, offset int) int {
 	h := haystack[offset:]
 	return strings.Count(h, needle)
+}
+
+// http://php.net/manual/ja/function.substr-replace.php
+func SubstrReplace(str string, replacement string, start int) string {
+	i := 0
+	if start >= 0 {
+		i = start
+	} else {
+		i = len(str) + start
+	}
+	return str[:i] + replacement
 }
 
 func Ucfirst(s string) string {

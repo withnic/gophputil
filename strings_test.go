@@ -457,3 +457,11 @@ func ExampleSubstrCount() {
 	//2
 	//1
 }
+
+func ExampleSubstrReplace() {
+	fmt.Println(SubstrReplace("hogehoge", "test", 0))
+	fmt.Println(SubstrReplace("hogehoge", "test", -1))
+	// Output:
+	//test
+	//hogehogtest
+}
