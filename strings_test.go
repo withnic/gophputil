@@ -477,3 +477,20 @@ func ExampleTrim() {
 	// Output:
 	//hogehoge
 }
+
+func ExampleWordwrap() {
+	values := Wordwrap("hogehogefugafuge", 2, "<br>")
+
+	for _, v := range values {
+		fmt.Println(v)
+	}
+	// Output:
+	//ho<br>
+	//ge<br>
+	//ho<br>
+	//ge<br>
+	//fu<br>
+	//ga<br>
+	//fu<br>
+	//ge
+}

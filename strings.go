@@ -806,6 +806,39 @@ func Ucwords(p ...string) string {
 	return res
 }
 
+/** http://php.net/manual/ja/function.vfprintf.php
+func Vfprintf(handle io.Writer, format string, a ) int {
+	return
+}
+**/
+
+/** http://php.net/manual/ja/function.vprintf.php
+func Vprintf(format string, a) int {
+	return
+}
+**/
+
+/** http://php.net/manual/ja/function.vsprintf.php
+func Vsprintf(format string, a) string {
+	return
+}
+**/
+
+// http://php.net/manual/ja/function.wordwrap.php
+func Wordwrap(str string, width int, b string) []string {
+	res := []string{}
+	n := len(str) / width
+	for i := 0; i < n; i++ {
+		if len(str) > (i+1)*width {
+			res = append(res, str[i*width:(i+1)*width]+b)
+		} else {
+			res = append(res, str[i*width:])
+			break
+		}
+	}
+	return res
+}
+
 func trimfunc(i int) func(s string, d string) string {
 	if i == 1 {
 		return func(s string, d string) string {
