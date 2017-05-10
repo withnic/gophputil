@@ -748,6 +748,12 @@ func SubstrCompare(main string, str string, offset int) int {
 	e := offset + l
 	return strings.Compare(main[offset:e], str)
 }
+
+func SubstrCount(haystack string, needle string, offset int) int {
+	h := haystack[offset:]
+	return strings.Count(h, needle)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

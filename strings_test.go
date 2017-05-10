@@ -449,3 +449,11 @@ func ExampleSubstrCompare() {
 	//-1
 	//0
 }
+
+func ExampleSubstrCount() {
+	fmt.Println(SubstrCount("hogehoge", "ge", 0))
+	fmt.Println(SubstrCount("hogehoge", "ge", 3))
+	// Output:
+	//2
+	//1
+}
