@@ -20,12 +20,13 @@ import (
 	"golang.org/x/crypto/blowfish"
 )
 
-func AddcSlashes(s string, c string) string {
-	r := strings.Split(c, "..")
+// http://php.net/manual/ja/function.addcslashes.php
+func AddcSlashes(str string, charSet string) string {
+	r := strings.Split(charSet, "..")
 	var res string
 	min := []rune(r[0])
 	max := []rune(r[len(r)-1])
-	for _, v := range s {
+	for _, v := range str {
 		if min[0] <= v && v <= max[0] {
 			res += "\\" + string(v)
 		} else {
@@ -36,65 +37,70 @@ func AddcSlashes(s string, c string) string {
 	return res
 }
 
-func AddSlashes(s string) string {
+// http://php.net/manual/ja/function.addslashes.php
+func AddSlashes(str string) string {
 	r := strings.NewReplacer("'", "\\'", "\"", "\\\"", "\\", "\\\\")
-	return r.Replace(s)
+	return r.Replace(str)
 }
 
-func Bin2Hex(s string) string {
-	b := []byte(s[:])
+// http://php.net/manual/ja/function.bin2hex.php
+func Bin2Hex(str string) string {
+	b := []byte(str[:])
 	return hex.EncodeToString(b)
 }
 
+// http://php.net/manual/ja/function.chop.php
 func Chop(s ...string) string {
 	return trim(s, 1)
 }
 
-func Chr(i int) string {
-	for i < 0 {
-		i += 256
+// http://php.net/manual/ja/function.chr.php
+func Chr(ascii int) string {
+	for ascii < 0 {
+		ascii += 256
 	}
-	i %= 256
-	return string(rune(i))
+	ascii %= 256
+	return string(rune(ascii))
 }
 
-func ChunkSplit(s string, l int, sep string) string {
-	if len(s) < l {
-		return s
+// http://php.net/manual/ja/function.chunk-split.php
+func ChunkSplit(body string, chunklen int, end string) string {
+	if len(body) < chunklen {
+		return body
 	}
 
-	res := s[:l] + sep
-	tail := s[l:]
+	res := body[:chunklen] + end
+	tail := body[chunklen:]
 
-	for len(tail) > l {
-		res += tail[:l] + sep
-		tail = tail[l:]
+	for len(tail) > chunklen {
+		res += tail[:chunklen] + end
+		tail = tail[chunklen:]
 	}
 	res += tail
 
 	return res
 }
 
-// TODO
-func ConvertCyrString(s string, from string, to string) string {
+// TODO http://php.net/manual/ja/function.convert-cyr-string.php
+func ConvertCyrString(str string, from string, to string) string {
 	return ""
 }
 
-// TODO
-func ConvertUudecode(s string) string {
+// TODO http://php.net/manual/ja/function.convert-uudecode.php
+func ConvertUudecode(data string) string {
 	return ""
 }
 
-// TODO
-func ConvertUuencode(s string) string {
+// TODO http://php.net/manual/ja/function.convert-uuencode.php
+func ConvertUuencode(data string) string {
 	return ""
 }
 
-func CountChars(s string, i int) map[int]int {
+// http://php.net/manual/ja/function.count-chars.php
+func CountChars(str string, mode int) map[int]int {
+	r := countChars(str)
 
-	r := countChars(s)
-
-	switch i {
+	switch mode {
 	case 0:
 		return r
 	case 1:
@@ -116,8 +122,9 @@ func CountChars(s string, i int) map[int]int {
 	return r
 }
 
-func CountChars34(s string, i int) string {
-	r := countChars(s)
+//http://php.net/manual/ja/function.count-chars.php
+func CountChars34(str string, i int) string {
+	r := countChars(str)
 	var res string
 	switch i {
 	case 3:
@@ -138,23 +145,12 @@ func CountChars34(s string, i int) string {
 	return res
 }
 
-func countChars(s string) map[int]int {
-	r := make(map[int]int)
-	for i := 0; i < 255; i++ {
-		r[i] = 0
-	}
-
-	for _, v := range s {
-		r[int(v)]++
-	}
-	return r
-}
-
+// http://php.net/manual/ja/function.crc32.php
 func Crc32(s string) uint32 {
 	return crc32.ChecksumIEEE([]byte(s))
 }
 
-// TODO
+// TODO http://php.net/manual/ja/function.crypt.php
 func Crypt(s string, salt string) string {
 	var res string
 
@@ -199,70 +195,85 @@ func Crypt(s string, salt string) string {
 	return res
 }
 
-func echo(s string) {
+// http://php.net/manual/ja/function.echo.php
+func Echo(s string) {
 	fmt.Print(s)
 }
 
+// http://php.net/manual/ja/function.explode.php
 func Explode(d string, s string, l int) []string {
 	return strings.SplitN(s, d, l)
 }
 
+// http://php.net/manual/ja/function.fprintf.php
 func Fprintf(w io.Writer, f string, a ...interface{}) int {
 	n, _ := fmt.Fprintf(w, f, a[:]...)
 	return n
 }
 
-// TODO
+// TODO http://php.net/manual/ja/function.get-html-translation-table.php
 func GetHtmlTranslationTable(t int, f int, e string) map[string]string {
 	var res map[string]string
 	return res
 }
 
-// TODO
+// TODO http://php.net/manual/ja/function.hebrev.php
 func Hebrev(s string, m int) string {
 	return ""
 }
 
-// TODO
+// TODO http://php.net/manual/ja/function.hebrevc.php
 func Hebrevc(s string, m int) string {
 	return ""
 }
 
-func Hex2Bin(s string) string {
-	b, _ := hex.DecodeString(s)
+// http://php.net/manual/ja/function.hex2bin.php
+func Hex2Bin(data string) string {
+	b, _ := hex.DecodeString(data)
 	return string(b)
 }
 
+// http://php.net/manual/ja/function.html-entity-decode.php
 func HtmlEntityDecode(s string) string {
 	return html.UnescapeString(s)
 }
 
+// http://php.net/manual/ja/function.htmlentities.php
 func HtmlEntities(s string) string {
 	return html.EscapeString(s)
 }
 
-// TODO Fix. It's not strict.
+// TODO Fix. It's not strict. http://php.net/manual/ja/function.htmlspecialchars-decode.php
 func HtmlspecialcharsDecode(s string) string {
 	return html.UnescapeString(s)
 }
 
-// TODO Fix. It's not strict.
+// TODO Fix. It's not strict. http://php.net/manual/ja/function.htmlspecialchars.php
 func Htmlspecialchars(s string) string {
 	return html.EscapeString(s)
 }
 
-func Implode(d string, s []string) string {
-	return strings.Join(s, d)
+// http://php.net/manual/ja/function.implode.php
+func Implode(glue string, pieces []string) string {
+	return strings.Join(pieces, glue)
 }
 
-func Join(d string, s []string) string {
-	return Implode(d, s)
+// http://php.net/manual/ja/function.join.php
+func Join(glue string, pieces []string) string {
+	return Implode(glue, pieces)
 }
 
-func Levenshtein(s string, t string) int {
-	d := make([][]int, len(s)+1)
+// http://php.net/manual/ja/function.lcfirst.php
+func Lcfirst(s string) string {
+	first := strings.ToLower(string(s[0]))
+	return first + s[1:]
+}
+
+// http://php.net/manual/ja/function.levenshtein.php
+func Levenshtein(str1 string, str2 string) int {
+	d := make([][]int, len(str1)+1)
 	for i := range d {
-		d[i] = make([]int, len(t)+1)
+		d[i] = make([]int, len(str2)+1)
 	}
 	for i := range d {
 		d[i][0] = i
@@ -270,9 +281,9 @@ func Levenshtein(s string, t string) int {
 	for j := range d[0] {
 		d[0][j] = j
 	}
-	for j := 1; j <= len(t); j++ {
-		for i := 1; i <= len(s); i++ {
-			if s[i-1] == t[j-1] {
+	for j := 1; j <= len(str2); j++ {
+		for i := 1; i <= len(str1); i++ {
+			if str1[i-1] == str2[j-1] {
 				d[i][j] = d[i-1][j-1]
 			} else {
 				min := d[i-1][j]
@@ -286,20 +297,22 @@ func Levenshtein(s string, t string) int {
 			}
 		}
 	}
-	return d[len(s)][len(t)]
+	return d[len(str1)][len(str2)]
 }
 
-// TODO
+// TODO http://php.net/manual/ja/function.localeconv.php
 func Localeconv() {
 
 }
 
+// http://php.net/manual/ja/function.ltrim.php
 func Ltrim(s ...string) string {
 	return trim(s, 2)
 }
 
-func Md5File(s string) string {
-	f, err := os.Open(s)
+// http://php.net/manual/ja/function.md5-file.php
+func Md5File(filename string) string {
+	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -312,45 +325,49 @@ func Md5File(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-func Md5(s string) string {
+// http://php.net/manual/ja/function.md5.php
+func Md5(str string) string {
 	h := md5.New()
-	io.WriteString(h, s)
+	io.WriteString(h, str)
 	return hex.EncodeToString(h.Sum(nil))
 }
 
 // TODO: http://php.net/manual/ja/function.metaphone.php
-func Metaphone(s string) string {
+func Metaphone(str string) string {
 	return ""
 }
 
 // TODO: http://php.net/manual/ja/function.money-format.php
-func MoneyFormat(f string, m int) string {
+func MoneyFormat(format string, number float64) string {
 	return ""
 }
 
 // TODO: http://php.net/manual/ja/function.nl-langinfo.php
-func NlLanginfo() string {
+func NlLanginfo(item int) string {
 	return ""
 }
 
+// http://php.net/manual/ja/function.nl2br.php
 func Nl2br(s string) string {
 	r := strings.NewReplacer("\n\r", "\n", "\r\n", "\n", "\r", "\n", "\n", "<br>\n")
 	return r.Replace(s)
 }
 
-// TODO:
-func NumberFormat(s string) string {
+// TODO: http://php.net/manual/ja/function.number-format.php
+func NumberFormat(number float64) string {
 	return ""
 }
 
+// http://php.net/manual/ja/function.ord.php
 func Ord(s string) int {
 	return int(s[0])
 }
 
-func ParseStr(s string) map[string][]string {
+// http://php.net/manual/ja/function.parse-str.php
+func ParseStr(encodedString string) map[string][]string {
 	res := make(map[string][]string)
 	// key=v
-	queries := strings.Split(s, "&")
+	queries := strings.Split(encodedString, "&")
 	for _, v := range queries {
 		// 0:key , 1:v
 		query := strings.Split(v, "=")
@@ -368,13 +385,15 @@ func ParseStr(s string) map[string][]string {
 	return res
 }
 
+// http://php.net/manual/ja/function.print.php
 func Print(s string) int {
 	fmt.Print(s)
 	return 1
 }
 
-func Printf(f string, a ...interface{}) {
-	fmt.Printf(f, a...)
+// http://php.net/manual/ja/function.printf.php
+func Printf(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
 }
 
 // TODO: http://php.net/manual/ja/function.quoted-printable-decode.php
@@ -387,6 +406,7 @@ func QuotedPrintableEncode(s string) string {
 	return ""
 }
 
+// http://php.net/manual/ja/function.quotemeta.php
 func Quotemeta(s string) string {
 	r := strings.NewReplacer(
 		`.`, `\.`,
@@ -404,6 +424,7 @@ func Quotemeta(s string) string {
 	return r.Replace(s)
 }
 
+// http://php.net/manual/ja/function.rtrim.php
 func Rtrim(s ...string) string {
 	return trim(s, 1)
 }
@@ -414,8 +435,9 @@ func SetLocate(i int, l string) {
 	time.Local = loc
 }
 
-func Sha1File(s string) string {
-	f, err := os.Open(s)
+//http://php.net/manual/ja/function.sha1-file.php
+func Sha1File(filename string) string {
+	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -428,6 +450,7 @@ func Sha1File(s string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+// http://php.net/manual/ja/function.sha1.php
 func Sha1(s string) string {
 	h := sha1.New()
 	h.Write([]byte(s))
@@ -444,12 +467,14 @@ func Soundex(s string) string {
 	return ""
 }
 
-func Sprintf(f string, a ...interface{}) string {
-	return fmt.Sprintf(f, a...)
+// http://php.net/manual/ja/function.sprintf.php
+func Sprintf(format string, a ...interface{}) string {
+	return fmt.Sprintf(format, a...)
 }
 
-func Sscanf(s string, f string, a ...interface{}) int {
-	n, _ := fmt.Sscanf(s, f, a...)
+// http://php.net/manual/ja/function.sscanf.php
+func Sscanf(s string, format string, a ...interface{}) int {
+	n, _ := fmt.Sscanf(s, format, a...)
 	return n
 }
 
@@ -462,33 +487,37 @@ func StrGetcsv(s string) [][]string {
 }
 **/
 
-func StrIreplace(n string, r string, s string) string {
-	res := strings.Replace(strings.ToLower(s), n, r, -1)
-	res = strings.Replace(strings.ToLower(s), n, r, -1)
+// http://php.net/manual/ja/function.str-ireplace.php
+func StrIreplace(search string, replace string, subject string) string {
+	res := strings.Replace(strings.ToLower(subject), search, replace, -1)
+	res = strings.Replace(strings.ToLower(subject), search, replace, -1)
 	return res
 }
 
-//TODO:  i 0:STR_PAD_RIGHT 1:STR_PAD_LEFT 2:STR_PAD_BOTH only STR_PAD_RIGHT support
-func StrPad(s string, l int, p string, i int) string {
-	if len(s) > l {
-		return s
+//TODO:  i 0:STR_PAD_RIGHT 1:STR_PAD_LEFT 2:STR_PAD_BOTH only STR_PAD_RIGHT support http://php.net/manual/ja/function.str-pad.php
+func StrPad(input string, padLength int, padString string, i int) string {
+	if len(input) > padLength {
+		return input
 	}
 
-	for len(s) < l {
-		s += p
+	for len(input) < padLength {
+		input += padString
 	}
 
-	return s[:l]
+	return input[:padLength]
 }
 
-func StrReplace(n string, r string, s string) string {
-	return strings.Replace(s, n, r, -1)
+// http://php.net/manual/ja/function.str-repeat.php
+func StrRepeat(input string, multiplier int) string {
+	return strings.Repeat(input, multiplier)
 }
 
-func StrRepeat(s string, i int) string {
-	return strings.Repeat(s, i)
+// http://php.net/manual/ja/function.str-replace.php
+func StrReplace(search string, replace string, subject string) string {
+	return strings.Replace(subject, search, replace, -1)
 }
 
+// http://php.net/manual/ja/function.str-rot13.php
 func StrRot13(s string) string {
 	var res []rune
 	var t rune
@@ -512,6 +541,7 @@ func StrRot13(s string) string {
 	return string(res)
 }
 
+// http://php.net/manual/ja/function.str-shuffle.php
 func StrShuffle(s string) string {
 	rand.Seed(time.Now().UnixNano())
 	dest := make([]byte, len(s))
@@ -522,21 +552,22 @@ func StrShuffle(s string) string {
 	return string(dest)
 }
 
-func StrSplit(s string, i int) []string {
+// http://php.net/manual/ja/function.str-split.php
+func StrSplit(s string, splitLength int) []string {
 	var res []string
 
-	if i < 1 {
+	if splitLength < 1 {
 		log.Fatal("please input over 1")
 		//return false
 	}
 
-	if len(s) < i {
+	if len(s) < splitLength {
 		return []string{s}
 	}
 
 	for len(s) > 0 {
-		res = append(res, s[:i])
-		s = s[i:]
+		res = append(res, s[:splitLength])
+		s = s[splitLength:]
 	}
 
 	return res
@@ -547,69 +578,68 @@ func StrWordCount(s string, f string) {
 
 }
 
-func Strcasecmp(f string, s string) int {
-	return Strcmp(strings.ToLower(f), strings.ToLower(s))
+// http://php.net/manual/ja/function.strcasecmp.php
+func Strcasecmp(str1 string, str2 string) int {
+	return Strcmp(strings.ToLower(str1), strings.ToLower(str2))
 }
 
-func Strchr(h string, s string) string {
-	return StrStr(h, s)
+// http://php.net/manual/ja/function.strchr.php
+func Strchr(haystack string, needle string) string {
+	return StrStr(haystack, needle)
 }
 
-func Strcmp(f string, s string) int {
-	return strings.Compare(f, s)
+// http://php.net/manual/ja/function.strcmp.php
+func Strcmp(str1 string, str2 string) int {
+	return strings.Compare(str1, str2)
 }
 
 // TODO: http://php.net/manual/ja/function.strcoll.php
-func Strcoll() int {
+func Strcoll(str1 string, str2 string) int {
 	return 0
 }
 
 // TODO: http://php.net/manual/ja/function.strcspn.php
-func Strcspn(s string, m string) int {
+func Strcspn(subject string, mask string) int {
 	return 0
 }
 
 // TODO: http://php.net/manual/ja/function.strip-tags.php
-func StripTags(s string, allow string) string {
+func StripTags(s string, allowableTags string) string {
 	return ""
 }
 
-// TODO:
+// TODO: http://php.net/manual/ja/function.stripcslashes.php
 func Stripcslashes(s string) string {
 	return ""
 }
 
-func Stripos(s string, n string) int {
-	return strings.Index(strings.ToLower(s), strings.ToLower(n))
+// http://php.net/manual/ja/function.stripos.php
+func Stripos(haystack string, needle string) int {
+	return strings.Index(strings.ToLower(haystack), strings.ToLower(needle))
 }
 
+// http://php.net/manual/ja/function.stripslashes.php
 func Stripslashes(s string) string {
 	re := regexp.MustCompile(`\\([^\\])`)
 	return re.ReplaceAllString(s, `$1`)
 }
 
-func StriStr(h string, s string) string {
-	i := Stripos(h, s)
+// http://php.net/manual/ja/function.stristr.php
+func StriStr(haystack string, needle string) string {
+	i := Stripos(haystack, needle)
 	if i >= 0 {
-		return h[i:]
+		return haystack[i:]
 	}
 	return string("-1")
 }
 
-func StrStr(h string, s string) string {
-	i := strings.Index(h, s)
-	if i >= 0 {
-		return string(h[i:])
-	}
-	return string("-1")
-}
-
+// http://php.net/manual/ja/function.strlen.php
 func Strlen(s string) int {
 	return len(s)
 }
 
 // TODO: http://php.net/manual/ja/function.strnatcasecmp.php
-func Strnatcasecmp(f string, s string) int {
+func Strnatcasecmp(str1 string, str2 string) int {
 	return 0
 }
 
@@ -618,53 +648,59 @@ func Strnatcmp(f string, s string) int {
 	return 0
 }
 
-func Strncasecmp(f string, s string, l int) int {
-	t := l
-	if len(f) < t {
-		t = len(f)
+// http://php.net/manual/ja/function.strncasecmp.php
+func Strncasecmp(str1 string, str2 string, length int) int {
+	t := length
+	if len(str1) < t {
+		t = len(str1)
 	}
-	if len(s) < t {
-		t = len(s)
+	if len(str2) < t {
+		t = len(str2)
 	}
-	ff := f[:t]
-	ss := s[:t]
+	ff := str1[:t]
+	ss := str2[:t]
 	return Strcasecmp(ff, ss)
 }
 
-func Strncmp(f string, s string, l int) int {
-	t := l
-	if len(f) < t {
-		t = len(f)
+// http://php.net/manual/ja/function.strncmp.php
+func Strncmp(str1 string, str2 string, length int) int {
+	t := length
+	if len(str1) < t {
+		t = len(str1)
 	}
-	if len(s) < t {
-		t = len(s)
+	if len(str2) < t {
+		t = len(str2)
 	}
-	ff := f[:t]
-	ss := s[:t]
+	ff := str1[:t]
+	ss := str2[:t]
 	return Strcmp(ff, ss)
 }
 
-func Strpbrk(h string, c string) string {
-	i := strings.Index(h, c)
+// http://php.net/manual/ja/function.strpbrk.php
+func Strpbrk(haystack string, charList string) string {
+	i := strings.Index(haystack, charList)
 	if i >= 0 {
-		return h[i:]
+		return haystack[i:]
 	}
 	return string(-1)
 }
 
-func Strpos(h string, n string) int {
-	return strings.Index(h, n)
+// http://php.net/manual/ja/function.strpos.php
+func Strpos(haystack string, needle string) int {
+	return strings.Index(haystack, needle)
 }
 
-func Strrchr(h string, n string) string {
-	i := strings.LastIndex(h, n)
+// http://php.net/manual/ja/function.strrchr.php
+func Strrchr(haystack string, needle string) string {
+	i := strings.LastIndex(haystack, needle)
 	if i >= 0 {
-		return h[i:]
+		return haystack[i:]
 	}
 
 	return string(-1)
 }
 
+// http://php.net/manual/ja/function.strrev.php
 func Strrev(s string) string {
 	i := len(s) - 1
 	var res string
@@ -709,6 +745,14 @@ func Strrpos(haystack string, needle string, offset int) int {
 // TODO: http://php.net/manual/ja/function.strspn.php
 func Strspn(subject string, mask string) int {
 	return 0
+}
+
+func StrStr(h string, s string) string {
+	i := strings.Index(h, s)
+	if i >= 0 {
+		return string(h[i:])
+	}
+	return string("-1")
 }
 
 // http://php.net/manual/ja/function.strtok.php
@@ -781,11 +825,6 @@ func Ucfirst(s string) string {
 	return first + s[1:]
 }
 
-func Lcfirst(s string) string {
-	first := strings.ToLower(string(s[0]))
-	return first + s[1:]
-}
-
 func Ucwords(p ...string) string {
 	d := " "
 	if len(p) > 1 {
@@ -837,6 +876,19 @@ func Wordwrap(str string, width int, b string) []string {
 		}
 	}
 	return res
+}
+
+// http://php.net/manual/ja/function.count-chars.php
+func countChars(s string) map[int]int {
+	r := make(map[int]int)
+	for i := 0; i < 255; i++ {
+		r[i] = 0
+	}
+
+	for _, v := range s {
+		r[int(v)]++
+	}
+	return r
 }
 
 func trimfunc(i int) func(s string, d string) string {
