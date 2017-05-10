@@ -726,6 +726,19 @@ func Strtoupper(s string) string {
 	return strings.ToUpper(s)
 }
 
+// http://php.net/manual/ja/function.strtr.php
+func Strtr(str string, from string, to string) string {
+	rep := []string{}
+	for i := 0; i < len(to); i++ {
+		if len(from) > i {
+			rep = append(rep, string(from[i]))
+			rep = append(rep, string(to[i]))
+		}
+	}
+	r := strings.NewReplacer(rep...)
+	return r.Replace(str)
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]

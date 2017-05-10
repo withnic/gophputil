@@ -425,9 +425,17 @@ func ExampleStrrpos() {
 func ExampleStrtolower() {
 	fmt.Println(Strtolower("hogefugatestfuga."))
 	// Output:
+	//hogefugatestfuga.
 }
 
 func ExampleStrtoupper() {
 	fmt.Println(Strtoupper("hogefugatestfuga."))
 	// Output:
+	//HOGEFUGATESTFUGA.
+}
+
+func ExampleStrtr() {
+	fmt.Println(Strtr("hogefuga", "aiueo", "zyxwv"))
+	// Output:
+	//hvgwfxgz
 }
