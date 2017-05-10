@@ -404,3 +404,11 @@ func ExampleStrrev() {
 	// Output:
 	//.aguftsetagufegoh
 }
+
+func ExampleStrripos() {
+	fmt.Println(Strripos("hogefugatestfuga.", "fuga", 0))
+	fmt.Println(Strripos("hogefugatestfuga.", "fuga", 8))
+	// Output:
+	//12
+	//12
+}
