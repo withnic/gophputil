@@ -465,3 +465,9 @@ func ExampleSubstrReplace() {
 	//test
 	//hogehogtest
 }
+
+func ExampleSubstr() {
+	fmt.Println(Substr("hogehoge", 5))
+	// Output:
+	//oge
+}

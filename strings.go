@@ -766,6 +766,11 @@ func SubstrReplace(str string, replacement string, start int) string {
 	return str[:i] + replacement
 }
 
+// http://php.net/manual/ja/function.substr.php
+func Substr(str string, start int) string {
+	return str[start:]
+}
+
 func Ucfirst(s string) string {
 	first := strings.ToUpper(string(s[0]))
 	return first + s[1:]
