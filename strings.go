@@ -6,11 +6,11 @@ import (
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"hash/crc32"
 	"html"
 	"io"
-	"log"
 	"math/rand"
 	"os"
 	"regexp"
@@ -151,7 +151,7 @@ func Crc32(s string) uint32 {
 }
 
 // TODO http://php.net/manual/ja/function.crypt.php
-func Crypt(s string, salt string) string {
+func Crypt(s string, salt string) (string, error) {
 	var res string
 
 	switch len(salt) {
@@ -170,29 +170,33 @@ func Crypt(s string, salt string) string {
 		// CRYPT_MD5
 		h := md5.New()
 		h.Write([]byte(s))
-		return hex.EncodeToString(h.Sum(nil))
+		return hex.EncodeToString(h.Sum(nil)), nil
 	case 22:
 		// TODO: PADDING salt. CRYPT_BLOWFISH
-		cipher, _ := blowfish.NewSaltedCipher([]byte("key"), []byte(salt))
+		cipher, err := blowfish.NewSaltedCipher([]byte("key"), []byte(salt))
+
+		if err != nil {
+			return "", err
+		}
 		if len(s)%blowfish.BlockSize != 0 {
 			os.Exit(1)
 		}
 		var encrypted []byte
 		cipher.Encrypt(encrypted, []byte(s))
-		return string(encrypted)
+		return string(encrypted), nil
 	case 16:
 		// TODO: if condition. CRYPT_SHA256
 		if true {
 			c := sha256.Sum256([]byte(s))
-			return hex.EncodeToString(c[:])
+			return hex.EncodeToString(c[:]), nil
 		} else {
 			// CRYPT_SHA51
 			c := sha512.Sum512([]byte(s))
-			return hex.EncodeToString(c[:])
+			return hex.EncodeToString(c[:]), nil
 		}
 
 	}
-	return res
+	return res, nil
 }
 
 // http://php.net/manual/ja/function.echo.php
@@ -311,18 +315,18 @@ func Ltrim(s ...string) string {
 }
 
 // http://php.net/manual/ja/function.md5-file.php
-func Md5File(filename string) string {
+func Md5File(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 	defer f.Close()
 	h := md5.New()
 	if _, err := io.Copy(h, f); err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
-	return hex.EncodeToString(h.Sum(nil))
+	return hex.EncodeToString(h.Sum(nil)), nil
 }
 
 // http://php.net/manual/ja/function.md5.php
@@ -436,18 +440,18 @@ func SetLocate(i int, l string) {
 }
 
 //http://php.net/manual/ja/function.sha1-file.php
-func Sha1File(filename string) string {
+func Sha1File(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 	defer f.Close()
 
 	h := sha1.New()
 	if _, err := io.Copy(h, f); err != nil {
-		log.Fatal(err)
+		return "", err
 	}
-	return hex.EncodeToString(h.Sum(nil))
+	return hex.EncodeToString(h.Sum(nil)), nil
 }
 
 // http://php.net/manual/ja/function.sha1.php
@@ -473,9 +477,8 @@ func Sprintf(format string, a ...interface{}) string {
 }
 
 // http://php.net/manual/ja/function.sscanf.php
-func Sscanf(s string, format string, a ...interface{}) int {
-	n, _ := fmt.Sscanf(s, format, a...)
-	return n
+func Sscanf(s string, format string, a ...interface{}) (int, error) {
+	return fmt.Sscanf(s, format, a...)
 }
 
 // TODO http://php.net/manual/ja/function.str-getcsv.php
@@ -553,16 +556,15 @@ func StrShuffle(s string) string {
 }
 
 // http://php.net/manual/ja/function.str-split.php
-func StrSplit(s string, splitLength int) []string {
+func StrSplit(s string, splitLength int) ([]string, error) {
 	var res []string
 
 	if splitLength < 1 {
-		log.Fatal("please input over 1")
-		//return false
+		return res, errors.New("too short split")
 	}
 
 	if len(s) < splitLength {
-		return []string{s}
+		return []string{s}, errors.New("splitLength too longer then s")
 	}
 
 	for len(s) > 0 {
@@ -570,7 +572,7 @@ func StrSplit(s string, splitLength int) []string {
 		s = s[splitLength:]
 	}
 
-	return res
+	return res, nil
 }
 
 // TODO: http://php.net/manual/ja/function.str-word-count.php
@@ -584,7 +586,7 @@ func Strcasecmp(str1 string, str2 string) int {
 }
 
 // http://php.net/manual/ja/function.strchr.php
-func Strchr(haystack string, needle string) string {
+func Strchr(haystack string, needle string) (string, error) {
 	return StrStr(haystack, needle)
 }
 
@@ -677,12 +679,12 @@ func Strncmp(str1 string, str2 string, length int) int {
 }
 
 // http://php.net/manual/ja/function.strpbrk.php
-func Strpbrk(haystack string, charList string) string {
+func Strpbrk(haystack string, charList string) (string, error) {
 	i := strings.Index(haystack, charList)
 	if i >= 0 {
-		return haystack[i:]
+		return haystack[i:], nil
 	}
-	return string(-1)
+	return "", errors.New("not include")
 }
 
 // http://php.net/manual/ja/function.strpos.php
@@ -691,13 +693,13 @@ func Strpos(haystack string, needle string) int {
 }
 
 // http://php.net/manual/ja/function.strrchr.php
-func Strrchr(haystack string, needle string) string {
+func Strrchr(haystack string, needle string) (string, error) {
 	i := strings.LastIndex(haystack, needle)
 	if i >= 0 {
-		return haystack[i:]
+		return haystack[i:], nil
 	}
 
-	return string(-1)
+	return "", errors.New("not include")
 }
 
 // http://php.net/manual/ja/function.strrev.php
@@ -747,12 +749,12 @@ func Strspn(subject string, mask string) int {
 	return 0
 }
 
-func StrStr(h string, s string) string {
+func StrStr(h string, s string) (string, error) {
 	i := strings.Index(h, s)
 	if i >= 0 {
-		return string(h[i:])
+		return string(h[i:]), nil
 	}
-	return string("-1")
+	return "", errors.New("not include")
 }
 
 // http://php.net/manual/ja/function.strtok.php

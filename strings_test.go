@@ -159,7 +159,11 @@ func ExampleLtrim() {
 }
 
 func ExampleMd5File() {
-	fmt.Println(Md5File("./README.md"))
+	f, err := Md5File("./README.md")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(f)
 	// Output:
 	//8654b55cf206f99f629ff6457da3484c
 }
@@ -212,7 +216,11 @@ func ExampleSha1() {
 }
 
 func ExampleSha1File() {
-	fmt.Print(Sha1File("./README.md"))
+	s, err := Sha1File("./README.md")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Print(s)
 	// Output:
 	//857c196985b516a92ae383cf2eb7c05e0ac8a835
 }
@@ -295,7 +303,10 @@ func ExampleStrShuffle() {
 }
 
 func ExampleStrSplit() {
-	values := StrSplit("hello,world.", 3)
+	values, err := StrSplit("hello,world.", 3)
+	if err != nil {
+		fmt.Println(err)
+	}
 	for _, v := range values {
 		fmt.Println(v)
 	}
@@ -319,13 +330,21 @@ func ExampleStrcasecmp() {
 }
 
 func ExampleStrchr() {
-	fmt.Println(Strchr("name@example.com", "@"))
+	c, err := Strchr("name@example.com", "@")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(c)
 	// Output:
 	//@example.com
 }
 
 func ExampleStrStr() {
-	fmt.Println(StrStr("name@example.com", "@"))
+	s, err := StrStr("name@example.com", "@")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(s)
 	// Output:
 	//@example.com
 }
@@ -382,7 +401,11 @@ func ExampleStrncmp() {
 }
 
 func ExampleStrpbrk() {
-	fmt.Println(Strpbrk("Namaa@nameple.com", "name"))
+	b, err := Strpbrk("Namaa@nameple.com", "name")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(b)
 	// Output:
 	//nameple.com
 }
@@ -394,7 +417,11 @@ func ExampleStrpos() {
 }
 
 func ExampleStrrchr() {
-	fmt.Println(Strrchr("hogefugatestfuga.", "fuga"))
+	s, err := Strrchr("hogefugatestfuga.", "fuga")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(s)
 	// Output:
 	//fuga.
 }
